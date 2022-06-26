@@ -1,0 +1,38 @@
+.story-item {
+  background-color: white;
+  padding: 30px 20px;
+  border: 1px solid #eee;
+  display: flex;
+  gap: 20px;
+}
+
+.story-item-score {
+  color: #f60;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.story-item-domain {
+  margin-left: 4px;
+  color: #828282;
+  font-size: 0.85rem;
+}
+
+.story-item a {
+  text-decoration: none;
+  color: #34495e;
+}
+
+.story-item-meta {
+  color: #626262;
+  font-size: 0.85rem;
+}
+
+.story-item-meta a {
+  text-decoration: underline;
+}
+
+.story-item-meta a:is(:hover, :focus) {
+  color: #f60;
+}

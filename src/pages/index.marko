@@ -1,31 +1,34 @@
-import logo from "./logo.svg";
-<app-layout title="Welcome to Marko">
-  <mouse-mask.container>
-    <header>
-      <img.logo src=logo alt="Marko"/>
-    </header>
-    <main>
-      <p>Edit <code>./pages/index.marko</code> and save to reload.</p>
-      <a href="https://markojs.com/docs/getting-started">
-        Learn Marko
-      </a>
-    </main>
-  </mouse-mask>
+import { getStories } from "../api/hn";
+$ const url = input.url;
+$ const { category = "top" } = input.params;
+$ const { searchParams } = input.url;
+$ const page = parseInt(searchParams.get("page", 10)) || 1;
+
+<app-layout>
+  <div>
+    <await(getStories(category, page)) client-reorder>
+      <@placeholder><div>Loading...</div></@placeholder>
+      <@then|stories|>
+        <main.stories-list>
+          <ul>
+            <for|story| of=stories>
+              <story story=story/>
+            </for>
+          </ul>
+        </main>
+      </@then>
+      <@catch|error|>
+        Uh oh, something went wrong!
+        <pre>${error.message}</pre>
+      </@catch>
+    </await>
+  </div>
 </app-layout>
 
-style {
-  .container {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size:2em; 
-    color: #fff;
-    background: #111;
-    height:100%;
-    width:100%;
+<style>
+  .stories-list ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
   }
-  img.logo {
-    width:400px;
-  }
-}
+</style>

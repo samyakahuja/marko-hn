@@ -1,0 +1,15 @@
+import { getStory } from "../api/hn";
+$ const { searchParams } = input.url;
+$ const itemId = searchParams.get("id");
+
+<h1>Item</h1>
+<await(getStory(itemId)) client-reorder>
+  <@then|story|><pre>${JSON.stringify(story, null, 2)}</pre></@then>
+  <@catch|error|>
+    Uh oh, something went wrong!
+    <if(error?.message)>
+      <pre>${error?.message}</pre>
+    </if>
+  </@catch>
+  <@placeholder><div>Loading...</div></@placeholder>
+</await>

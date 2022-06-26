@@ -1,0 +1,27 @@
+$ const { story } = input;
+
+<li.story-item>
+  <span.story-item-score>${story.points}</span>
+  <div>
+    <div.story-item-title>
+      <if(story.url)>
+        <a href=story.url target="_blank" rel="noreferrer">${story.title}</a>
+        <if(story.domain)>
+          <span.story-item-domain>(${story.domain})</span>
+        </if>
+      </if>
+      <else>${story.title}</else>
+    </div>
+    <div.story-item-meta>
+      $ const { comments_count } = story;
+      <p>
+        by ${story.user} ${story.time_ago} |
+        <a href=`/item?id=${story.id}`>
+          ${comments_count
+            ? `${comments_count} comment${comments_count > 1 ? "s" : ""}`
+            : "discuss"}
+        </a>
+      </p>
+    </div>
+  </div>
+</li>
